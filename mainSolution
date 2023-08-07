@@ -1,0 +1,23 @@
+from pathlib import Path 
+import csv 
+ 
+## create a file to csv file 
+fp = Path.cwd()/"CSV_file"/"ProfitAndLoss.csv" 
+ 
+# read the csv file to append day and net profit from the csv 
+with fp.open(mode="r", encoding="UTF-8", newline="") as file: 
+    reader = csv.reader(file) 
+    next(reader) 
+ 
+    # create an empty lists to store day and nett profit record 
+    dailynetprofitrecords=[]  
+ 
+    # append profit and loss into into dailynetprofitrecords list 
+    for row in reader: 
+        dailynetprofitrecords.append([row[0],row[4]]) 
+ 
+    highest_increment_netprofit = 0 
+    day_highest_increment_netprofit = None 
+    for n in range(1, len(dailynetprofitrecords)): 
+        current_day = int(dailynetprofitrecords[n][1]) 
+        previous_day  = int(dailynetprofitrecords[n - 1][1])
